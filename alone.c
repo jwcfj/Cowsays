@@ -42,8 +42,8 @@ int main(void)
     {
         printf("\n\tChat Foreve Alone\n\n");
         printf("1. Oi\n");
-        printf("2. Tudo bem\n");
-        printf("3. Como vai a familia\n");
+        printf("2. Tudo bem?\n");
+        printf("3. Como vai a familia?\n");
         printf("0. Sair\n");
 
         scanf("%d", &continuar);
@@ -85,6 +85,10 @@ void oi(void)
 void tudo_bem(void)
 {
     printf("\nTudo otimo, e com voce?\n");
+    putchar('\n');    
+    printf("1. Uma bosta\n");
+    printf("2. Tudo bem\n");
+    while(getchar()=='\n');
     return;
 }
 
