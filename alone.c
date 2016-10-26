@@ -28,6 +28,7 @@
  */
 
 #include<stdio.h>
+#include <unistd.h>
 
 void oi(void);
 void tudo_bem(void);
@@ -37,10 +38,11 @@ void sair(void);
 int main(void)
 {
     int continuar=1;
-    int cont=0
+    int cont=0;
 
     do
     {
+        printf("\e[H\e[2J");
         printf("\n\tChat Forever Alone");
         if(cont==0)
             printf(" (Estilo Victor)");
@@ -51,7 +53,7 @@ int main(void)
         printf("0. Sair\n");
 
         scanf("%d", &continuar);
-        /*system("cls || clear");*/
+        printf("\e[H\e[2J");
 
         switch(continuar)
         {
@@ -74,7 +76,10 @@ int main(void)
             default:
                 printf("Digite uma opcao valida\n");
         }
+        sleep(2);
+        cont++;
     } while(continuar);
+    printf("\e[H\e[2J");
 
     return 0;
 }
@@ -90,10 +95,18 @@ void tudo_bem(void)
 {
     printf("\nTudo otimo, e com voce?\n");
     putchar('\n');    
+    
+    sleep(2);
+    printf("\e[H\e[2J");
+    
     printf("1. Uma bosta\n");
     printf("2. Tudo bem\n");
     while(getchar()=='\n');
+    
+    printf("\e[H\e[2J");
     printf("\nAhh...\n");
+    sleep(2);
+    printf("\e[H\e[2J");
     return;
 }
 
