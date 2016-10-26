@@ -37,10 +37,14 @@ void sair(void);
 int main(void)
 {
     int continuar=1;
+    int cont=0
 
     do
     {
-        printf("\n\tChat Foreve Alone\n\n");
+        printf("\n\tChat Forever Alone");
+        if(cont==0)
+            printf(" (Estilo Victor)");
+        printf("\n\n");
         printf("1. Oi\n");
         printf("2. Tudo bem?\n");
         printf("3. Como vai a familia?\n");
@@ -89,6 +93,7 @@ void tudo_bem(void)
     printf("1. Uma bosta\n");
     printf("2. Tudo bem\n");
     while(getchar()=='\n');
+    printf("\nAhh...\n");
     return;
 }
 
