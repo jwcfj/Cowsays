@@ -26,7 +26,7 @@ int main(void)
         {"             -XXXXXXXX---------------  XXXXXX-    \0"},/*6*/
         {"                |XXXXXXXXXXXXXXXXXXXXXXXXXX/      \0"},/*7*/
         {"                    VXXXXXXXXXXXXXXXXXXV          \0"} /*8*/
-    }
+    };
     int a;
     while(1)
     {
