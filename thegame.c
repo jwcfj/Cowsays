@@ -31,7 +31,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-int main(int argc, char** argv)
+int main(void)
 {
     int n, x, limite_inferior, limite_superior, acertou, tentativas;
 
