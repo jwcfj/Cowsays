@@ -27,8 +27,9 @@
  * 
  */
 
-#include <stdio.h>
+#include <stdio.h> /* Standard I/O functions */
 #include <stdlib.h> /* Miscellaneous functions (rand, malloc, srand)*/
+#include <getopt.h> /* get options from system argc/argv */
 
 /* --------------------------------------------------------------------------*/
 /**
@@ -39,30 +40,64 @@
  *
  * \return 
  */
-int main(void)
+int remover(void);
+
+int main(int argc, char *argv[])
 {
     FILE *dados= NULL;
     char tem;
-    int st;
+    int opt, f=0;
+
+    /* getopt() configured options:
+     *        -f  forcado
+     */
+    opterr = 0;
+    while((opt = getopt(argc, argv, "f")) != EOF)
+        switch(opt)
+        {
+            case 'f':
+                f = 1; 
+                break;
+            case '?':
+            default:
+                printf("Type\n\t$man %s\nor\n\t$%s -h\nfor help.\n\n", argv[0], argv[0]);
+                return EXIT_FAILURE;
+        }
+
 
     dados=fopen("errors.err","r");
 
     if(dados!=NULL)
     {
-        if(fscanf(dados, "%c", &tem) == EOF)
-        {
-            printf("Sem conteudo\n");
-            st = remove("errors.err");
-            if(!st)
-                printf("Excluido com sucesso!\n");
-            else
-                printf("Falha na exclussao\n");
-        }
+        if(f)
+            remover();
         else
-            printf("Com conteudo\n");
+        {
+            if(fscanf(dados, "%c", &tem) == EOF)
+            {
+                printf("Sem conteudo\n");
+                remover();
+            }
+            else
+                printf("Com conteudo\n");
+        }
     }
     else
         printf("Arquivo nao encontrado\n");
 
     return EXIT_SUCCESS;
 }
+
+int remover(void)
+{
+    int st;
+
+    st = remove("errors.err");
+    if(!st)
+        printf("Excluido com sucesso!\n");
+    else
+        printf("Falha na exclussao\n");
+
+    return st;
+}
+
