@@ -41,22 +41,26 @@
  * \return 
  */
 int remover(void);
+int imprimir(void);
 
 int main(int argc, char *argv[])
 {
     FILE *dados= NULL;
     char tem;
-    int opt, f=0;
+    int opt, f=0, c=0;
 
     /* getopt() configured options:
      *        -f  forcado
      */
     opterr = 0;
-    while((opt = getopt(argc, argv, "f")) != EOF)
+    while((opt = getopt(argc, argv, "fc")) != EOF)
         switch(opt)
         {
             case 'f':
                 f = 1; 
+                break;
+            case 'c':
+                c = 1; 
                 break;
             case '?':
             default:
@@ -69,8 +73,12 @@ int main(int argc, char *argv[])
 
     if(dados!=NULL)
     {
-        if(f)
-            remover();
+        if(c)
+        {
+            imprimir();
+            if(f)
+                remover();
+        }
         else
         {
             if(fscanf(dados, "%c", &tem) == EOF)
@@ -80,10 +88,14 @@ int main(int argc, char *argv[])
             }
             else
                 printf("Com conteudo\n");
+                if(f)
+                    remover();
         }
     }
     else
         printf("Arquivo nao encontrado\n");
+
+    fclose(dados);
 
     return EXIT_SUCCESS;
 }
@@ -96,8 +108,23 @@ int remover(void)
     if(!st)
         printf("Excluido com sucesso!\n");
     else
-        printf("Falha na exclussao\n");
+        printf("Falha na exclusao\n");
 
     return st;
+}
+
+int imprimir(void)
+{
+    char ch;
+    FILE *dados;
+
+    dados=fopen("errors.err","r");
+
+    while((ch=fgetc(dados))!= EOF)
+        printf("%c", ch);
+
+    fclose(dados);
+
+    return 0;
 }
 
