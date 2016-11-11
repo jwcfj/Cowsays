@@ -92,11 +92,10 @@ int main(int argc, char *argv[])
                 if(f)
                     remover();
         }
+        fclose(dados);
     }
     else
         printf("Arquivo nao encontrado\n");
-
-    fclose(dados);
 
     return EXIT_SUCCESS;
 }
