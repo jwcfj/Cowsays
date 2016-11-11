@@ -51,6 +51,7 @@ int main(int argc, char *argv[])
 
     /* getopt() configured options:
      *        -f  forcado
+     *        -c  imprimir
      */
     opterr = 0;
     while((opt = getopt(argc, argv, "fc")) != EOF)
